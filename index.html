@@ -38,9 +38,6 @@
                         <div class="bio-action-link" onclick="showAbout()">
                             <span class="dot filled"></span>BIO
                         </div>
-                        <div class="bio-action-link" onclick="showReel()">
-                            <span class="dot hollow"></span>REEL
-                        </div>
                     </div>
                 </div>
 
@@ -69,25 +66,6 @@
                         people connect to stories, and how art can say more by doing less.</p>
                 </div>
 
-                <!-- Reel Section (hidden initially) -->
-                <div id="reelSection" style="display: none;">
-                    <div class="back-link" onclick="hideReel()">← BACK</div>
-                    <p class="bio-label">reel.img_sequence</p>
-
-                    <div id="reelSlideshow" class="reel-slideshow">
-                        <!-- Placeholder Slides -->
-                        <div class="reel-slide active">Placeholder Image 01</div>
-                        <div class="reel-slide">Placeholder Image 02</div>
-                        <div class="reel-slide">Placeholder Image 03</div>
-                        <div class="reel-slide">Placeholder Image 04</div>
-                        <div class="reel-slide">Placeholder Image 05</div>
-                        <div class="reel-slide">Placeholder Image 06</div>
-                        <div class="reel-slide">Placeholder Image 07</div>
-                        <div class="reel-slide">Placeholder Image 08</div>
-                        <div class="reel-slide">Placeholder Image 09</div>
-                        <div class="reel-slide">Placeholder Image 10</div>
-                    </div>
-                </div>
             </div>
 
             <!-- Right: Project Index -->
@@ -224,64 +202,6 @@
                 bioContainer.style.maxWidth = '35%';
                 bioContainer.scrollTop = 0;
             }, 300); // Faster fade out
-        }
-
-        let reelInterval;
-
-        function showReel() {
-            document.getElementById('shortBio').style.display = 'none';
-            document.querySelector('.visitor-header').style.display = 'none';
-
-            const bioContainer = document.getElementById('bioContainer');
-            bioContainer.style.paddingTop = '30px';
-            bioContainer.style.width = '56vw'; /* Reduced to ~70% of 80vw */
-            bioContainer.style.maxWidth = 'none'; /* Remove max-width constraint */
-            bioContainer.scrollTop = 0;
-
-            const reelSection = document.getElementById('reelSection');
-            reelSection.style.display = 'block';
-            setTimeout(() => {
-                reelSection.style.opacity = '1';
-            }, 50);
-
-            startReelSlideshow();
-        }
-
-        function hideReel() {
-            stopReelSlideshow();
-            const reelSection = document.getElementById('reelSection');
-            reelSection.style.opacity = '0';
-
-            setTimeout(() => {
-                reelSection.style.display = 'none';
-                document.getElementById('shortBio').style.display = 'block';
-                document.querySelector('.visitor-header').style.display = 'flex';
-
-                const bioContainer = document.getElementById('bioContainer');
-                bioContainer.style.paddingTop = '80px';
-                bioContainer.style.width = 'auto'; /* Reset width */
-                bioContainer.style.maxWidth = '35%'; /* Restore original max-width */
-                bioContainer.scrollTop = 0;
-            }, 300);
-        }
-
-        function startReelSlideshow() {
-            const slides = document.querySelectorAll('.reel-slide');
-            let currentSlide = 0;
-
-            // Ensure first slide is active
-            slides.forEach(s => s.classList.remove('active'));
-            slides[0].classList.add('active');
-
-            reelInterval = setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 1000); // Rotate every 1 second
-        }
-
-        function stopReelSlideshow() {
-            clearInterval(reelInterval);
         }
     </script>
 </body>

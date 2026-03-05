@@ -70,6 +70,9 @@
 
             <!-- Right: Project Index -->
             <div class="project-index">
+                <div class="portrait-container">
+                    <img src="portrait_camera.jpg" alt="Dustin Grant" class="portrait-img">
+                </div>
                 <div class="index-label">STUFF I DO</div>
                 <a href="#" class="project-link">01. PICTURE STUFF</a>
                 <a href="#" class="project-link">02. VIDEO STUFF</a>
@@ -160,6 +163,12 @@
                 if (indexLabel) {
                     indexLabel.style.opacity = '0';
                     setTimeout(() => { indexLabel.style.opacity = '1'; }, 0);
+                }
+
+                const portraitContainer = document.querySelector('.portrait-container');
+                if (portraitContainer) {
+                    portraitContainer.style.opacity = '0';
+                    setTimeout(() => { portraitContainer.style.opacity = '1'; }, 0);
                 }
 
                 projectLinks.forEach((link, index) => {

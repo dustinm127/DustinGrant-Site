@@ -136,6 +136,28 @@ body {
     opacity: 1;
 }
 
+/* Portrait Image above Projects */
+.portrait-container {
+    max-width: 140px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.portrait-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.3s ease;
+}
+
+.portrait-img:hover {
+    filter: grayscale(0%) contrast(1.0);
+}
+
 /* Bottom Navigation */
 .bottom-nav {
     position: fixed;

@@ -357,3 +357,49 @@ body {
 .reel-slide.active {
     opacity: 1;
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .app {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    .content-wrapper {
+        position: relative;
+        flex-direction: column;
+        padding: 24px;
+        padding-top: 80px;
+        height: auto;
+        gap: 40px;
+    }
+
+    .bio-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .bio-text {
+        font-size: 18px;
+    }
+
+    #longBio .bio-text {
+        font-size: 15px;
+    }
+
+    .project-index {
+        position: relative;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-bottom: 40px;
+    }
+
+    .project-link {
+        font-size: 18px;
+    }
+}

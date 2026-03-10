@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dustin Grant | Creative Astronaut</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <a href="index.html" class="back-home">← BACK TO HOME</a>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- Left: Bio Section -->
+            <div class="bio-container" id="bioContainer">
+                <!-- Visitor Header -->
+                <div class="visitor-header">
+                    <span>GREETINGS</span>
+                    <div class="status-dot"></div>
+                    <div class="status-dot-blue"></div>
+                </div>
+
+                <!-- Initial Short Bio -->
+                <div id="shortBio">
+                    <p class="bio-text">I'M DUSTIN GRANT (CREATIVE ASTRONAUT), A VISUAL STORYTELLER. FROM COMMERCIAL
+                        SHOOTS TO DIGITAL FACELIFTS.<br>PERSPECTIVE-DRIVEN WORK, CONSISTENTLY APPLIED.</p>
+
+                    <p class="bio-text">I DIRECT, SHOOT, EDIT AND COLOR GRADE. ALL DAY. EVERY DAY. ON PURPOSE. IT'S WHAT
+                        I'M PASSIONATE ABOUT.<br>AND I'M GOOD AT IT.</p>
+
+                    <div class="bio-actions">
+                        <div class="bio-action-link" onclick="showAbout()">
+                            <span class="dot filled"></span>BIO
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expanded Bio (hidden initially) -->
+                <div id="longBio" style="display: none;">
+                    <div class="back-link" onclick="hideAbout()">← BACK</div>
+
+                    <p class="bio-label">about.txt</p>
+
+                    <p class="bio-text">Dustin Grant is an international award-winning freelance filmmaker based in
+                        Dallas, Texas, and the owner of Pink Mouse Blue Mouse Productions.</p>
+
+                    <p class="bio-text">He grew up on a small tree farm in rural Louisiana, which shaped his love of
+                        landscape and his curiosity about people. That background still shows up in his work. He is
+                        drawn equally to open spaces and cities, to quiet observation and human complexity.</p>
+
+                    <p class="bio-text">After spending two decades in the corporate technology world, Dustin left to
+                        focus on creative work full-time. His approach favors clarity, restraint, and purpose. He
+                        believes the best work is simple, intentional, and honest.</p>
+
+                    <p class="bio-text">Over the past decade, his work and curiosity have taken him around the world,
+                        from Iceland and Central America to U.S. national parks. He works across film, writing, and
+                        photography, and continues to explore new forms of storytelling.</p>
+
+                    <p class="bio-text">At the core of everything he does is a desire to understand how things work, why
+                        people connect to stories, and how art can say more by doing less.</p>
+                </div>
+
+            </div>
+
+            <!-- Right: Project Index -->
+            <div class="project-index">
+                <div class="portrait-container">
+                    <img src="portrait_camera.jpg" alt="Dustin Grant" class="portrait-img">
+                </div>
+                <div class="index-label">STUFF I DO</div>
+                <a href="#" class="project-link">01. PICTURE STUFF</a>
+                <a href="#" class="project-link">02. VIDEO STUFF</a>
+                <a href="#" class="project-link">03. FLYING VIDEO STUFF</a>
+                <a href="#" class="project-link">04. EDITING AND COLOR GRADING STUFF</a>
+                <a href="#" class="project-link">05. BOOK STUFF</a>
+            </div>
+        </div>
+
+        <div
+            style="position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 10px; font-weight: 500; letter-spacing: 1px; color: rgba(0,0,0,0.4); z-index: 10; pointer-events: none;">
+            &copy; 2026 DUSTIN GRANT. ALL RIGHTS RESERVED.
+        </div>
+    </div>
+
+    <script>
+        function animateText(container, callback, speed = 15) {
+            const elements = container.querySelectorAll('.bio-text, .bio-label'); // Include label
+
+            // Prepare text
+            let allSpans = [];
+            elements.forEach(p => {
+                // Check if already wrapped
+                if (p.querySelector('span[style*="transition"]')) {
+                    // Already wrapped, just reset opacity
+                    const spans = p.querySelectorAll('span');
+                    spans.forEach(s => s.style.opacity = '0');
+                    allSpans.push(...Array.from(spans));
+                    return;
+                }
+
+                const nodes = Array.from(p.childNodes);
+                p.innerHTML = '';
+
+                nodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const chars = node.textContent.split('');
+                        chars.forEach(char => {
+                            const span = document.createElement('span');
+                            span.textContent = char;
+                            span.style.opacity = '0';
+                            span.style.transition = 'opacity 0.1s ease';
+                            p.appendChild(span);
+                            allSpans.push(span);
+                        });
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        p.appendChild(node.cloneNode(true));
+                    }
+                });
+                p.dataset.animated = 'true';
+            });
+
+            // If we just gathered spans from existing structure, we need to ensure order
+            if (allSpans.length === 0) {
+                // Try to re-select if we skipped wrapping
+                elements.forEach(p => {
+                    allSpans.push(...Array.from(p.querySelectorAll('span')));
+                });
+            }
+
+            // Animate
+            let delay = 0;
+            const charDelay = speed; // Use the speed parameter
+
+            allSpans.forEach((span) => {
+                setTimeout(() => {
+                    span.style.opacity = '1';
+                }, delay);
+                delay += charDelay;
+            });
+
+            if (callback) {
+                setTimeout(callback, delay);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const shortBio = document.getElementById('shortBio');
+            animateText(shortBio, () => {
+                // Fade in the link at the end
+                const bioActions = shortBio.querySelector('.bio-actions');
+                bioActions.style.opacity = '0';
+                bioActions.style.transition = 'opacity 0.5s ease';
+                bioActions.style.opacity = '1';
+            });
+
+            // Animate Right Side (Project Index)
+            // ... (keep existing logic or ensure it works)
+            setTimeout(() => {
+                const indexLabel = document.querySelector('.index-label');
+                const projectLinks = document.querySelectorAll('.project-link');
+
+                if (indexLabel) {
+                    indexLabel.style.opacity = '0';
+                    setTimeout(() => { indexLabel.style.opacity = '1'; }, 0);
+                }
+
+                const portraitContainer = document.querySelector('.portrait-container');
+                if (portraitContainer) {
+                    portraitContainer.style.opacity = '0';
+                    setTimeout(() => { portraitContainer.style.opacity = '1'; }, 0);
+                }
+
+                projectLinks.forEach((link, index) => {
+                    link.style.opacity = '0';
+                    setTimeout(() => {
+                        link.style.opacity = '1';
+                    }, 200 + (index * 100));
+                });
+            }, 500);
+        });
+
+        function showAbout() {
+            document.getElementById('shortBio').style.display = 'none';
+            document.querySelector('.visitor-header').style.display = 'none';
+
+            const bioContainer = document.getElementById('bioContainer');
+            bioContainer.style.maxWidth = '60%'; // Expanded width
+            bioContainer.scrollTop = 0;
+
+            const longBio = document.getElementById('longBio');
+            longBio.style.display = 'block';
+            longBio.style.opacity = '1'; // Container visible immediately
+
+            // Animate text inside with faster speed (7ms)
+            animateText(longBio, null, 7);
+        }
+
+        function hideAbout() {
+            const longBio = document.getElementById('longBio');
+            longBio.style.opacity = '0';
+
+            // Wait for fade out before hiding
+            setTimeout(() => {
+                longBio.style.display = 'none';
+                document.getElementById('shortBio').style.display = 'block';
+                document.querySelector('.visitor-header').style.display = 'flex';
+
+                const bioContainer = document.getElementById('bioContainer');
+                bioContainer.style.paddingTop = '80px';
+                bioContainer.style.maxWidth = '35%';
+                bioContainer.scrollTop = 0;
+            }, 300); // Faster fade out
+        }
+    </script>
+</body>
+
+</html>

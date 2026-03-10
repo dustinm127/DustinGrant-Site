@@ -5,6 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dustin Grant | Creative Astronaut</title>
+    <meta name="description" content="Dustin Grant is an international award-winning freelance filmmaker based in Dallas, Texas. Creative Astronaut: Directing, shooting, editing, and color grading.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.dustinmgrant.com/">
+    <meta property="og:title" content="Dustin Grant | Creative Astronaut">
+    <meta property="og:description" content="Dustin Grant is an international award-winning freelance filmmaker based in Dallas, Texas.">
+    <meta property="og:image" content="https://www.dustinmgrant.com/portrait_camera.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.dustinmgrant.com/">
+    <meta property="twitter:title" content="Dustin Grant | Creative Astronaut">
+    <meta property="twitter:description" content="Dustin Grant is an international award-winning freelance filmmaker based in Dallas, Texas.">
+    <meta property="twitter:image" content="https://www.dustinmgrant.com/portrait_camera.webp">
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -71,7 +87,10 @@
             <!-- Right: Project Index -->
             <div class="project-index">
                 <div class="portrait-container">
-                    <img src="portrait_camera.jpg" alt="Dustin Grant" class="portrait-img">
+                    <picture>
+                        <source srcset="portrait_camera.webp" type="image/webp">
+                        <img src="portrait_camera.jpg" alt="Dustin Grant" class="portrait-img">
+                    </picture>
                 </div>
                 <div class="index-label">STUFF I DO</div>
                 <a href="#" class="project-link">01. PICTURE STUFF</a>
